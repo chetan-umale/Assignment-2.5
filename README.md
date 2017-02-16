@@ -13,3 +13,14 @@ Q2-What is meant by a Rack and explain the rack arrangement in a hadoop cluster.
 
 answer:
 
+Rack:
+A collection nodes physically stored close togather and connected to a same network switch is called Rack.
+
+Rack arrangement in Hadoop:
+
+1.In large clusters of hadoop ,in order to improve network traffic while accessing files, name node chooses data nodes which are on the same rack or a nearby rack to read/write request.
+2.Name node achieves this rack information by maintaining rack ids of each data node.This concept of choosing closer data nodes based on racks information is called rack awareness in hadoop.
+3.A default hadoop installation assumes that all the nodes belong to the same rack.
+4.A simple policy is to place replicas across racks.This prevents loss of data when an entire rack fails and allows to make use of bandwidth from multiple racks when reading  a file.
+5.on multiple racks cluster, block replications are maintained with a policy of no more than one replica is placed on one node and no more than 2 replicas are placed in the same rack with a constraint that number of racks used for block replication should always be less than total number of block replicas.
+
